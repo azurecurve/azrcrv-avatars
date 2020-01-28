@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Avatars
  * Description: Allow users to upload their own avatar.
- * Version: 1.0.1
+ * Version: 1.1.0
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/avatars
@@ -24,6 +24,10 @@ if (!defined('ABSPATH')){
 
 // include plugin menu
 require_once(dirname( __FILE__).'/pluginmenu/menu.php');
+register_activation_hook(__FILE__, 'azrcrv_create_plugin_menu_a');
+
+// include update client
+require_once(dirname(__FILE__).'/libraries/updateclient/UpdateClient.class.php');
 
 /**
  * Setup registration activation hook, actions, filters and shortcodes.
@@ -44,6 +48,7 @@ add_action('edit_user_profile', 'azrcrv_a_edit_user_profile_avatars');
 add_action('personal_options_update', 'azrcrv_a_save_user_profile_avatars');
 add_action('edit_user_profile_update', 'azrcrv_a_save_user_profile_avatars');
 add_action('admin_enqueue_scripts', 'media_uploader');
+add_action('plugins_loaded', 'azrcrv_a_load_languages');
 
 // add filters
 add_filter('plugin_action_links', 'azrcrv_a_add_plugin_action_link', 10, 2);
@@ -55,6 +60,17 @@ add_filter('avatar_defaults', 'azrcrv_a_avatar_defaults');
 
 // add shortcodes
 add_shortcode('avatar', 'azrcrv_a_show_avatar');
+
+/**
+ * Load language files.
+ *
+ * @since 1.0.0
+ *
+ */
+function azrcrv_a_load_languages() {
+    $plugin_rel_path = basename(dirname(__FILE__)).'/languages';
+    load_plugin_textdomain('azrcrv-a', false, $plugin_rel_path);
+}
 
 function media_uploader() {
     global $post_type;
@@ -194,7 +210,7 @@ function azrcrv_a_display_options(){
 	?>
 	<div id="azrcrv-a-general" class="wrap">
 		<fieldset>
-			<h2><?php echo esc_html(get_admin_page_title()); ?></h2>
+			<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
 			<?php if(isset($_GET['settings-updated'])){ ?>
 				<div class="notice notice-success is-dismissible">
 					<p><strong><?php esc_html_e('Settings have been saved.', 'avatars'); ?></strong></p>
