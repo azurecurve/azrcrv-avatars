@@ -1,7 +1,7 @@
 === Avatars ===
 
 Description:	Change the default avatar and allow users to upload their own.
-Version:		1.1.0
+Version:		1.1.1
 Tags:			avatar,profile picture,gravatar
 Author:			azurecurve
 Author URI:		https://development.azurecurve.co.uk/
@@ -50,6 +50,9 @@ This plugin is developed for ClassicPress, but will likely work on WordPress.
 == Changelog ==
 
 # Changelog
+
+### [Version 1.1.1](https://github.com/azurecurve/azrcrv-display-after-post-content/tree/v1.1.1)
+ * Fix bug with incorrect language load text domain.
 
 ### [Version 1.1.0](https://github.com/azurecurve/azrcrv-avatars/tree/v1.1.0)
  * Add integration with Update Manager for automatic updates.

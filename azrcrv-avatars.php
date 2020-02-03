@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Avatars
  * Description: Allow users to upload their own avatar.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/avatars
@@ -69,7 +69,7 @@ add_shortcode('avatar', 'azrcrv_a_show_avatar');
  */
 function azrcrv_a_load_languages() {
     $plugin_rel_path = basename(dirname(__FILE__)).'/languages';
-    load_plugin_textdomain('azrcrv-a', false, $plugin_rel_path);
+    load_plugin_textdomain('avatars', false, $plugin_rel_path);
 }
 
 function media_uploader() {
