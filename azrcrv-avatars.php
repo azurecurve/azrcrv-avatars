@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Avatars
  * Description: Allow users to upload their own avatar.
- * Version: 1.1.2
+ * Version: 1.1.3
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/avatars/
@@ -133,27 +133,65 @@ function azrcrv_a_set_default_options($networkwide){
 
 			foreach ($blog_ids as $blog_id){
 				switch_to_blog($blog_id);
-
-				if (get_option($option_name) === false){
-					add_option($option_name, $new_options);
-				}
+				
+				azrcrv_a_update_options($option_name, $new_options, false);
 			}
+
 			switch_to_blog($original_blog_id);
 		}else{
-			if (get_option($option_name) === false){
-				add_option($option_name, $new_options);
-			}
+			azrcrv_a_update_options( $option_name, $new_options, false);
 		}
 		if (get_site_option($option_name) === false){
-			add_option($option_name, $new_options);
+			azrcrv_a_update_options($option_name, $new_options, true);
 		}
 	}
 	//set defaults for single site
 	else{
+		azrcrv_a_update_options($option_name, $new_options, false);
+	}
+}
+
+/**
+ * Update options.
+ *
+ * @since 1.1.3
+ *
+ */
+function azrcrv_a_update_options($option_name, $new_options, $is_network_site){
+	if ($is_network_site == true){
+		if (get_site_option($option_name) === false){
+			add_site_option($option_name, $new_options);
+		}else{
+			update_site_option($option_name, azrcrv_a_update_default_options($new_options, get_site_option($option_name)));
+		}
+	}else{
 		if (get_option($option_name) === false){
 			add_option($option_name, $new_options);
+		}else{
+			update_option($option_name, azrcrv_a_update_default_options($new_options, get_option($option_name)));
 		}
 	}
+}
+
+
+/**
+ * Add default options to existing options.
+ *
+ * @since 1.1.3
+ *
+ */
+function azrcrv_a_update_default_options( &$default_options, $current_options ) {
+    $default_options = (array) $default_options;
+    $current_options = (array) $current_options;
+    $updated_options = $current_options;
+    foreach ($default_options as $key => &$value) {
+        if (is_array( $value) && isset( $updated_options[$key ])){
+            $updated_options[$key] = azrcrv_a_update_default_options($value, $updated_options[$key], true);
+        } else {
+            $updated_options[$key] = $value;
+        }
+    }
+    return $updated_options;
 }
 
 /**
@@ -333,10 +371,13 @@ function azrcrv_a_return_avatar( $avatar, $id_or_email, $size, $default, $alt ) 
 				return $avatar;
 			}
 		}
+		$user_id = 0;
+	}else{
+		$user_id = $user->ID;
 	}
 	
 	// get avatar url
-	$avatar = azrcrv_a_get_avatar_url($user->ID);
+	$avatar = azrcrv_a_get_avatar_url($user_id);
 	
 	// format avatar
 	$avatar = "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
@@ -352,12 +393,12 @@ function azrcrv_a_return_avatar( $avatar, $id_or_email, $size, $default, $alt ) 
  *
  */
 function azrcrv_a_get_avatar_url($userid){
-	
+
 	// get avatar options
 	$options = get_option('azrcrv-a');
 	
 	// get user avatar
-	$avatar = get_usermeta($userid, 'azrcrv_a_avatar', true);
+	$avatar = get_user_meta($userid, 'azrcrv_a_avatar', true);
 	
 	// get default avatar
 	$avatar_default = get_option('avatar_default');
@@ -374,15 +415,15 @@ function azrcrv_a_get_avatar_url($userid){
 		
 		// set default avatar based on Discussion Options
 		if ($default == 'mystery'){
-			$default = "$host/avatar/ad516503a11cd5ca435acc9bb6523536?s={$size}";
+			$default = "$host/avatar/ad516503a11cd5ca435acc9bb6523536?s";
 		}elseif ($default == 'blank'){
 			$default = includes_url( 'images/blank.gif' );
 		}elseif ($default == 'gravatar_default'){
-			$default = "$host/avatar/?s={$size}";
+			$default = "$host/avatar/?s";
 		}elseif (substr($default, 0, 4) == 'http'){
 			$default = $avatar_default;
 		}else{
-			$default = "$host/avatar/?d=$default&amp;s={$size}";
+			$default = "$host/avatar/?d=$default&amp;";
 		}
 		// set avatar to default
 		$avatar = $default;
@@ -454,9 +495,9 @@ function azrcrv_a_save_user_profile_avatars($user_id) {
 	}
 
 	if (empty($_POST['azrcrv-a-avatar-path'])){
-		delete_usermeta($user_id, 'azrcrv_a_avatar');
+		delete_user_meta($user_id, 'azrcrv_a_avatar');
 	}else{
-		update_usermeta($user_id, 'azrcrv_a_avatar', $_POST['azrcrv-a-avatar-path']);
+		update_user_meta($user_id, 'azrcrv_a_avatar', $_POST['azrcrv-a-avatar-path']);
 	}
 
     
