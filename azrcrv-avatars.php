@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Avatars
  * Description: Allow users to upload their own avatar.
- * Version: 1.1.4
+ * Version: 1.2.0
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/avatars/
@@ -35,8 +35,6 @@ require_once(dirname(__FILE__).'/libraries/updateclient/UpdateClient.class.php')
  * @since 1.0.0
  *
  */
-// add actions
-add_action('admin_init', 'azrcrv_a_set_default_options');
 
 // add actions
 add_action('admin_menu', 'azrcrv_a_create_admin_menu');
@@ -55,7 +53,7 @@ add_filter('plugin_action_links', 'azrcrv_a_add_plugin_action_link', 10, 2);
 add_filter( 'avatar_defaults', 'azrcrv_a_set_default_avatar' );
 // get local avatar
 add_filter('get_avatar', 'azrcrv_a_return_avatar', 10, 5);
-		
+
 add_filter('avatar_defaults', 'azrcrv_a_avatar_defaults');
 
 // add shortcodes
@@ -102,104 +100,27 @@ function azrcrv_a_load_css(){
  *
  */
 function azrcrv_a_load_jquery($hook){
-	/*if($hook != 'edit-user.php' AND $HOOK != 'profile.php') {
-			return;
-	}*/
 	wp_enqueue_script( 'azrcrv-a', plugins_url('assets/jquery/jquery.js',__FILE__));
 }
 
 /**
- * Set default options for plugin.
+ * Get options including defaults.
  *
- * @since 1.0.0
+ * @since 1.2.0
  *
  */
-function azrcrv_a_set_default_options($networkwide){
-	
-	$option_name = 'azrcrv-a';
-	
-	$new_options = array(
+function azrcrv_a_get_option($option_name){
+ 
+	$defaults = array(
 						'localonly' => 0,
-						'updated' => strtotime('2020-04-04'),
-			);
-	
-	// set defaults for multi-site
-	if (function_exists('is_multisite') && is_multisite()){
-		// check if it is a network activation - if so, run the activation function for each blog id
-		if ($networkwide){
-			global $wpdb;
+					);
 
-			$blog_ids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
-			$original_blog_id = get_current_blog_id();
+	$options = get_option($option_name, $defaults);
 
-			foreach ($blog_ids as $blog_id){
-				switch_to_blog($blog_id);
-				
-				azrcrv_a_update_options($option_name, $new_options, false);
-			}
+	$options = wp_parse_args($options, $defaults);
 
-			switch_to_blog($original_blog_id);
-		}else{
-			azrcrv_a_update_options( $option_name, $new_options, false);
-		}
-		if (get_site_option($option_name) === false){
-			azrcrv_a_update_options($option_name, $new_options, true);
-		}
-	}
-	//set defaults for single site
-	else{
-		azrcrv_a_update_options($option_name, $new_options, false);
-	}
-}
+	return $options;
 
-/**
- * Update options.
- *
- * @since 1.1.3
- *
- */
-function azrcrv_a_update_options($option_name, $new_options, $is_network_site){
-	if ($is_network_site == true){
-		if (get_site_option($option_name) === false){
-			add_site_option($option_name, $new_options);
-		}else{
-			$options = get_site_option($option_name);
-			if (!isset($options['updated']) OR $options['updated'] < $new_options['updated'] ){
-				$options['updated'] = $new_options['updated'];
-				update_site_option($option_name, azrcrv_a_update_default_options($options, $new_options));
-			}
-		}
-	}else{
-		if (get_option($option_name) === false){
-			add_option($option_name, $new_options);
-		}else{
-			$options = get_option($option_name);
-			if (!isset($options['updated']) OR $options['updated'] < $new_options['updated'] ){
-				$options['updated'] = $new_options['updated'];
-				update_option($option_name, azrcrv_a_update_default_options($options, $new_options));
-			}
-		}
-	}
-}
-
-/**
- * Add default options to existing options.
- *
- * @since 1.1.3
- *
- */
-function azrcrv_a_update_default_options( &$default_options, $current_options ) {
-    $default_options = (array) $default_options;
-    $current_options = (array) $current_options;
-    $updated_options = $current_options;
-    foreach ($default_options as $key => &$value) {
-        if (is_array( $value) && isset( $updated_options[$key])){
-            $updated_options[$key] = azrcrv_a_update_default_options($value, $updated_options[$key]);
-        } else {
-			$updated_options[$key] = $value;
-        }
-    }
-    return $updated_options;
 }
 
 /**
@@ -216,7 +137,7 @@ function azrcrv_a_add_plugin_action_link($links, $file){
 	}
 
 	if ($file == $this_plugin){
-		$settings_link = '<a href="'.get_bloginfo('wpurl').'/wp-admin/admin.php?page=azrcrv-a"><img src="'.plugins_url('/pluginmenu/images/Favicon-16x16.png', __FILE__).'" style="padding-top: 2px; margin-right: -5px; height: 16px; width: 16px;" alt="azurecurve" />'.esc_html__('Settings' ,'avatar').'</a>';
+		$settings_link = '<a href="'.admin_url('admin.php?page=azrcrv-a').'"><img src="'.plugins_url('/pluginmenu/images/Favicon-16x16.png', __FILE__).'" style="padding-top: 2px; margin-right: -5px; height: 16px; width: 16px;" alt="azurecurve" />'.esc_html__('Settings' ,'avatar').'</a>';
 		array_unshift($links, $settings_link);
 	}
 
@@ -252,7 +173,7 @@ function azrcrv_a_display_options(){
     }
 	
 	// Retrieve plugin configuration options from database
-	$options = get_option('azrcrv-a');
+	$options = azrcrv_a_get_option('azrcrv-a');
 	?>
 	<div id="azrcrv-a-general" class="wrap">
 		<fieldset>
@@ -369,7 +290,7 @@ function azrcrv_a_return_avatar( $avatar, $id_or_email, $size, $default, $alt ) 
 	}
 	
 	// get avatar options
-	$options = get_option('azrcrv-a');
+	$options = azrcrv_a_get_option('azrcrv-a');
 	// check if registered user
 	if (empty($user)){
 		// if not registered do they have an email
@@ -403,7 +324,7 @@ function azrcrv_a_return_avatar( $avatar, $id_or_email, $size, $default, $alt ) 
 function azrcrv_a_get_avatar_url($userid){
 
 	// get avatar options
-	$options = get_option('azrcrv-a');
+	$options = azrcrv_a_get_option('azrcrv-a');
 	
 	// get user avatar
 	$avatar = get_user_meta($userid, 'azrcrv_a_avatar', true);
