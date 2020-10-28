@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Avatars
  * Description: Allow users to upload their own avatar.
- * Version: 1.2.0
+ * Version: 1.2.1
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/avatars/
@@ -56,6 +56,9 @@ add_filter('get_avatar', 'azrcrv_a_return_avatar', 10, 5);
 
 add_filter('avatar_defaults', 'azrcrv_a_avatar_defaults');
 
+add_filter('codepotent_update_manager_image_path', 'azrcrv_a_custom_image_path');
+add_filter('codepotent_update_manager_image_url', 'azrcrv_a_custom_image_url');
+
 // add shortcodes
 add_shortcode('avatar', 'azrcrv_a_show_avatar');
 
@@ -101,6 +104,32 @@ function azrcrv_a_load_css(){
  */
 function azrcrv_a_load_jquery($hook){
 	wp_enqueue_script( 'azrcrv-a', plugins_url('assets/jquery/jquery.js',__FILE__));
+}
+
+/**
+ * Custom plugin image path.
+ *
+ * @since 1.2.0
+ *
+ */
+function azrcrv_a_custom_image_path($path){
+    if (strpos($path, 'azrcrv-avatars') !== false){
+        $path = plugin_dir_path(__FILE__).'assets/pluginimages';
+    }
+    return $path;
+}
+
+/**
+ * Custom plugin image url.
+ *
+ * @since 1.2.0
+ *
+ */
+function azrcrv_a_custom_image_url($url){
+    if (strpos($url, 'azrcrv-avatars') !== false){
+        $url = plugin_dir_url(__FILE__).'assets/pluginimages';
+    }
+    return $url;
 }
 
 /**
