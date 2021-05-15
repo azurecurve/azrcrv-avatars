@@ -6,7 +6,7 @@ Tags:			avatar,profile picture,gravatar
 Author:			azurecurve
 Author URI:		https://development.azurecurve.co.uk/
 Plugin URI:		https://development.azurecurve.co.uk/classicpress-plugins/avatars/
-Download link:	https://github.com/azurecurve/azrcrv-avatars/releases/download/v1.2.1/azrcrv-avatars.zip
+Download link:	https://github.com/azurecurve/azrcrv-avatars/releases/download/v1.2.2/azrcrv-avatars.zip
 Donate link:	https://development.azurecurve.co.uk/support-development/
 Requires PHP:	5.6
 Requires:		1.0.0
