@@ -3,11 +3,11 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Avatars
  * Description: Allow users to upload their own avatar.
- * Version: 1.2.2
+ * Version: 1.2.3
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/avatars/
- * Text Domain: avatars
+ * Text Domain: azrcrv-a
  * Domain Path: /languages
  * ------------------------------------------------------------------------------
  * This is free software released under the terms of the General Public License,
@@ -70,7 +70,7 @@ add_shortcode('avatar', 'azrcrv_a_show_avatar');
  */
 function azrcrv_a_load_languages() {
     $plugin_rel_path = basename(dirname(__FILE__)).'/languages';
-    load_plugin_textdomain('avatars', false, $plugin_rel_path);
+    load_plugin_textdomain('azrcrv-a', false, $plugin_rel_path);
 }
 
 function media_uploader() {
@@ -198,7 +198,7 @@ function azrcrv_a_create_admin_menu(){
  */
 function azrcrv_a_display_options(){
 	if (!current_user_can('manage_options')){
-        wp_die(esc_html__('You do not have sufficient permissions to access this page.', 'avatars'));
+        wp_die(esc_html__('You do not have sufficient permissions to access this page.', 'azrcrv-a'));
     }
 	
 	// Retrieve plugin configuration options from database
@@ -209,12 +209,12 @@ function azrcrv_a_display_options(){
 			<h1>
 				<?php
 					echo '<a href="https://development.azurecurve.co.uk/classicpress-plugins/"><img src="'.plugins_url('/pluginmenu/images/logo.svg', __FILE__).'" style="padding-right: 6px; height: 20px; width: 20px;" alt="azurecurve" /></a>';
-					esc_html_e(get_admin_page_title());
+					echo esc_html(get_admin_page_title());
 				?>
 			</h1>
 			<?php if(isset($_GET['settings-updated'])){ ?>
 				<div class="notice notice-success is-dismissible">
-					<p><strong><?php esc_html_e('Settings have been saved.', 'avatars'); ?></strong></p>
+					<p><strong><?php esc_html_e('Settings have been saved.', 'azrcrv-a'); ?></strong></p>
 				</div>
 			<?php } ?>
 			<form method="post" action="admin-post.php">
@@ -228,13 +228,13 @@ function azrcrv_a_display_options(){
 					<tr>
 						<th scope="row" colspan="2">
 							<label for="explanation">
-								<?php esc_html_e('Avatars allows the admin to specify a default avatar and allows users to upload their own avatar.', 'avatars'); ?>
+								<?php esc_html_e('Avatars allows the admin to specify a default avatar and allows users to upload their own avatar.', 'azrcrv-a'); ?>
 							</label>
 						</th>
 					</tr>
 				
-					<tr><th scope="row"><?php esc_html_e('Use local avatars only?', 'avatars'); ?></th><td>
-						<fieldset><legend class="screen-reader-text"><span><?php esc_html_e('Use local avatars only?', 'avatars'); ?></span></legend>
+					<tr><th scope="row"><?php esc_html_e('Use local avatars only?', 'azrcrv-a'); ?></th><td>
+						<fieldset><legend class="screen-reader-text"><span><?php esc_html_e('Use local avatars only?', 'azrcrv-a'); ?></span></legend>
 						<label for="localonly"><input name="localonly" type="checkbox" id="localonly" value="1" <?php checked('1', $options['localonly']); ?> /></label>
 						</fieldset>
 					</td></tr>
@@ -419,13 +419,13 @@ function azrcrv_a_avatar_defaults($avatar_defaults){
 function azrcrv_a_edit_user_profile_avatars($user){
 
     ?>
-    <h3><?php esc_html_e('Profile Picture', 'avatars'); ?></h3>
+    <h3><?php esc_html_e('Profile Picture', 'azrcrv-a'); ?></h3>
 	
-	<p><?php esc_html_e('Uploading a new image will replace the current profile picture.', 'avatars'); ?></p>
+	<p><?php esc_html_e('Uploading a new image will replace the current profile picture.', 'azrcrv-a'); ?></p>
 	<table class="form-table">
 		
         <tr>
-            <th><label for="azrcrv-a-avatar-path"><?php esc_html_e( 'Upload a new profile picture', 'avatars' ); ?></label></th>
+            <th><label for="azrcrv-a-avatar-path"><?php esc_html_e( 'Upload a new profile picture', 'azrcrv-a' ); ?></label></th>
             <td>
                 <!-- Outputs the image after save -->
 				<?php
@@ -435,9 +435,9 @@ function azrcrv_a_edit_user_profile_avatars($user){
                 <!-- Outputs the text field and displays the URL of the image retrieved by the media uploader -->
                 <input type="hidden" name="azrcrv-a-avatar-path" id="azrcrv-a-avatar-path" value="<?php echo esc_url_raw( get_the_author_meta( 'azrcrv_a_avatar', $user->data->ID ) ); ?>" class="regular-text" />
                 
-				<input type='button' id="azrcrv-a-upload-avatar" class="button upload" value="<?php esc_html_e( 'Upload avatar', 'avatars' ); ?>" />
-                <input type='button' id="azrcrv-a-remove-avatar" class="button remove" value="<?php esc_html_e( 'Remove avatar', 'avatars' ); ?>" /><br />
-                <span class="description"><?php esc_html_e( 'Upload, choose or remove your profile picture; save your profile to confirm the change.', 'avatars' ); ?></span>
+				<input type='button' id="azrcrv-a-upload-avatar" class="button upload" value="<?php esc_html_e( 'Upload avatar', 'azrcrv-a' ); ?>" />
+                <input type='button' id="azrcrv-a-remove-avatar" class="button remove" value="<?php esc_html_e( 'Remove avatar', 'azrcrv-a' ); ?>" /><br />
+                <span class="description"><?php esc_html_e( 'Upload, choose or remove your profile picture; save your profile to confirm the change.', 'azrcrv-a' ); ?></span>
             </td>
         </tr>
 		
