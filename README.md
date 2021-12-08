@@ -9,8 +9,6 @@ Admin setting allows only use of local avatars; prevents use of Gravatars; if us
 
 This plugin is multisite compatible; each site will need settings to be configured in the admin dashboard.
 
-== Installation ==
-
 # Installation Instructions
 
  * Download the latest release of the plugin from [GitHub](https://github.com/azurecurve/azrcrv-avatars/releases/latest/).
