@@ -1,0 +1,153 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Avatars\n"
+"POT-Creation-Date: 2022-03-01 19:02+0000\n"
+"PO-Revision-Date: 2019-03-02 15:36+0000\n"
+"Last-Translator: \n"
+"Language-Team: translate@azurecurve.co.uk\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
+"X-Poedit-SearchPath-0: azrcrv-avatars.php\n"
+
+#: azrcrv-avatars.php:198
+msgid "Settings"
+msgstr ""
+
+#: azrcrv-avatars.php:214 azrcrv-avatars.php:248
+msgid "Avatar Settings"
+msgstr ""
+
+#: azrcrv-avatars.php:215
+msgid "Avatars"
+msgstr ""
+
+#: azrcrv-avatars.php:229
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: azrcrv-avatars.php:244
+msgid "Settings have been saved."
+msgstr ""
+
+#: azrcrv-avatars.php:257
+msgid ""
+"Avatars allows the admin to specify a default avatar and allows users to "
+"upload their own avatar."
+msgstr ""
+
+#: azrcrv-avatars.php:268 azrcrv-avatars.php:276
+msgid "Use local avatars only?"
+msgstr ""
+
+#: azrcrv-avatars.php:292
+msgid "Upload custom default avatar?"
+msgstr ""
+
+#: azrcrv-avatars.php:305 azrcrv-avatars.php:709
+msgid "Upload avatar"
+msgstr ""
+
+#: azrcrv-avatars.php:306 azrcrv-avatars.php:710
+msgid "Remove avatar"
+msgstr ""
+
+#: azrcrv-avatars.php:311
+msgid "Upload, choose or remove the custom avatar."
+msgstr ""
+
+#: azrcrv-avatars.php:320
+msgid "Instructions"
+msgstr ""
+
+#: azrcrv-avatars.php:328
+msgid "Custom Avatar"
+msgstr ""
+
+#: azrcrv-avatars.php:339
+#, php-format
+msgid ""
+"A custom avatar can be uploaded on the Avatar Settings page located on the "
+"%s menu."
+msgstr ""
+
+#: azrcrv-avatars.php:344
+msgid ""
+"Once a custom avatar has been uploaded, it can be selected as the default "
+"on the Discussions page on the Settings menu."
+msgstr ""
+
+#: azrcrv-avatars.php:356
+msgid "User Avatar"
+msgstr ""
+
+#: azrcrv-avatars.php:367
+msgid ""
+"Users can set an avatar of their own on their Profile page; administrators "
+"can set or change a user's avatar on the Edit User page."
+msgstr ""
+
+#: azrcrv-avatars.php:371
+msgid ""
+"If no user avatar is specified, the default avatar selected on the "
+"Discussions page will be used."
+msgstr ""
+
+#: azrcrv-avatars.php:401
+msgid "Other Plugins"
+msgstr ""
+
+#: azrcrv-avatars.php:410
+#, php-format
+msgid ""
+"%1$s was one of the first plugin developers to start developing for "
+"Classicpress; all plugins are available from %2$s and are integrated with "
+"the %3$s plugin for fully integrated, no hassle, updates."
+msgstr ""
+
+#: azrcrv-avatars.php:413
+#, php-format
+msgid "Other plugins available from %s are:"
+msgstr ""
+
+#: azrcrv-avatars.php:481
+msgid "Save Settings"
+msgstr ""
+
+#: azrcrv-avatars.php:485
+msgid "Support"
+msgstr ""
+
+#: azrcrv-avatars.php:496
+msgid ""
+"You can help support the development of our free plugins by donating a "
+"small amount of money."
+msgstr ""
+
+#: azrcrv-avatars.php:513
+msgid "You do not have permissions to perform this action"
+msgstr ""
+
+#: azrcrv-avatars.php:693
+msgid "Profile Picture"
+msgstr ""
+
+#: azrcrv-avatars.php:695
+msgid "Uploading a new image will replace the current profile picture."
+msgstr ""
+
+#: azrcrv-avatars.php:699
+msgid "Upload a new profile picture"
+msgstr ""
+
+#: azrcrv-avatars.php:711
+msgid ""
+"Upload, choose or remove your profile picture; save your profile to confirm "
+"the change."
+msgstr ""
