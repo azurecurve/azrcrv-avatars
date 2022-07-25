@@ -19,7 +19,7 @@
  */
 
 // EDIT: Make this unique. Example: YourDevName\YourPluginName;
-namespace CodePotent\UpdateManager;
+namespace azurecurve\Avatars;
 
 // EDIT: URL where Update Manager is installed; with trailing slash!
 const UPDATE_SERVER = 'https://software.gieffeedizioni.it/';
