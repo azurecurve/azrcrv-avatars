@@ -1,12 +1,12 @@
 === Avatars ===
 
 Description:	Change the default avatar and allow users to upload their own.
-Version:		2.0.0
+Version:		2.1.0
 Tags:			avatar,profile picture,gravatar
 Author:			azurecurve
 Author URI:		https://development.azurecurve.co.uk/
 Plugin URI:		https://development.azurecurve.co.uk/classicpress-plugins/avatars/
-Download link:	https://github.com/azurecurve/azrcrv-avatars/releases/download/v2.0.0/azrcrv-avatars.zip
+Download link:	https://github.com/azurecurve/azrcrv-avatars/releases/download/v2.1.0/azrcrv-avatars.zip
 Donate link:	https://development.azurecurve.co.uk/support-development/
 Requires PHP:	5.6
 Requires:		1.0.0
@@ -51,8 +51,14 @@ This plugin is developed for ClassicPress, but will likely work on WordPress.
 
 # Changelog
 
+### [Version 2.1.0](https://github.com/azurecurve/azrcrv-avatars/releases/tag/v2.1.0)
+ * Refactor code to improve maintainability.
+ * Fix bug with upload/remove user profile avatar.
+ * Update language file.
+ * Update Update Manager to version 2.4.3.
+
 ### [Version 2.0.0](https://github.com/azurecurve/azrcrv-avatars/releases/tag/v2.0.0)
- * Refactor code to use namespace and improve security.
+ * Refactor code to use a namespace and improve security.
  * Add custom avatar upload to settings page.
  * Update language file.
  * Update readme txt and md files.
@@ -111,7 +117,7 @@ This plugin is developed for ClassicPress, but will likely work on WordPress.
 
 # About azurecurve
 
-**azurecurve** was one of the first plugin developers to start developing for Classicpress; all plugins are available from [azurecurve Development](https://development.azurecurve.co.uk/) and are integrated with the [Update Manager plugin](https://directory.classicpress.net/plugins/update-manager) for fully integrated, no hassle, updates.
+**azurecurve** was one of the first plugin developers to start developing for ClassicPress; all plugins are available from [azurecurve Development](https://development.azurecurve.co.uk/) and are integrated with the [Update Manager plugin](https://directory.classicpress.net/plugins/update-manager) for fully integrated, no hassle, updates.
 
 The other plugins available from **azurecurve** are:
  * Add Open Graph Tags - [details](https://development.azurecurve.co.uk/classicpress-plugins/add-open-graph-tags/) / [download](https://github.com/azurecurve/azrcrv-add-open-graph-tags/releases/latest/)

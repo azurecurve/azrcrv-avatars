@@ -1,0 +1,185 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Avatars\n"
+"POT-Creation-Date: 2022-03-27 13:02+0100\n"
+"PO-Revision-Date: 2019-03-02 15:36+0000\n"
+"Last-Translator: \n"
+"Language-Team: translate@azurecurve.co.uk\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/azurecurve-menu-display.php:55
+msgid "Active Plugins"
+msgstr ""
+
+#: includes/azurecurve-menu-display.php:81 includes/tab-other-plugins.php:41
+#, php-format
+msgid ""
+"%1$s was one of the first plugin developers to start developing for "
+"ClassicPress; all plugins are available from %2$s and are integrated with "
+"the %3$s plugin for fully integrated, no hassle, updates."
+msgstr ""
+
+#: includes/azurecurve-menu-display.php:84
+#, php-format
+msgid "The %s plugins active on your site are:"
+msgstr ""
+
+#: includes/azurecurve-menu-display.php:103
+msgid "Other Available Plugins"
+msgstr ""
+
+#: includes/azurecurve-menu-display.php:129
+#, php-format
+msgid "Congratulations! You're using all of the %s plugins."
+msgstr ""
+
+#: includes/azurecurve-menu-display.php:141
+#, php-format
+msgid "The other plugins available from %s are:"
+msgstr ""
+
+#: includes/azurecurve-menu-tabs-output.php:50 includes/tabs-output.php:94
+msgid "Support"
+msgstr ""
+
+#: includes/azurecurve-menu-tabs-output.php:61 includes/tabs-output.php:105
+msgid ""
+"You can help support the development of our free plugins by donating a "
+"small amount of money."
+msgstr ""
+
+#: includes/functions-menu.php:23 includes/functions-menu.php:39
+#: includes/tab-settings.php:15
+msgid "Settings"
+msgstr ""
+
+#: includes/functions-settings.php:38
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: includes/functions-settings.php:54
+msgid "Settings have been saved."
+msgstr ""
+
+#: includes/functions-settings.php:76
+msgid "You do not have permissions to perform this action"
+msgstr ""
+
+#: includes/plugin-functionality.php:185
+msgid "Profile Picture"
+msgstr ""
+
+#: includes/plugin-functionality.php:187
+msgid "Uploading a new image will replace the current profile picture."
+msgstr ""
+
+#: includes/plugin-functionality.php:191
+msgid "Upload a new profile picture"
+msgstr ""
+
+#: includes/plugin-functionality.php:201 includes/tab-settings.php:72
+msgid "Upload avatar"
+msgstr ""
+
+#: includes/plugin-functionality.php:202 includes/tab-settings.php:73
+msgid "Remove avatar"
+msgstr ""
+
+#: includes/plugin-functionality.php:203
+msgid ""
+"Upload, choose or remove your profile picture; save your profile to confirm "
+"the change."
+msgstr ""
+
+#: includes/tab-instructions.php:14
+msgid "Instructions"
+msgstr ""
+
+#: includes/tab-instructions.php:22
+msgid "Custom Avatar"
+msgstr ""
+
+#: includes/tab-instructions.php:33
+#, php-format
+msgid ""
+"A custom avatar can be uploaded on the %1$s Settings page located on the "
+"%2$s menu."
+msgstr ""
+
+#: includes/tab-instructions.php:38
+msgid ""
+"Once a custom avatar has been uploaded, it can be selected as the default "
+"on the Discussions page on the Settings menu."
+msgstr ""
+
+#: includes/tab-instructions.php:50
+msgid "User Avatar"
+msgstr ""
+
+#: includes/tab-instructions.php:61
+msgid ""
+"Users can set an avatar of their own on their Profile page; administrators "
+"can set or change a user's avatar on the Edit User page."
+msgstr ""
+
+#: includes/tab-instructions.php:65
+msgid ""
+"If no user avatar is specified, the default avatar selected on the "
+"Discussions page will be used."
+msgstr ""
+
+#: includes/tab-other-plugins.php:32
+msgid "Other Plugins"
+msgstr ""
+
+#: includes/tab-other-plugins.php:44
+#, php-format
+msgid "Other plugins available from %s, which you are not using, are:"
+msgstr ""
+
+#: includes/tab-settings.php:24
+msgid ""
+"Avatars allows the admin to specify a default avatar and allows users to "
+"upload their own avatar."
+msgstr ""
+
+#: includes/tab-settings.php:35 includes/tab-settings.php:43
+msgid "Use local avatars only?"
+msgstr ""
+
+#: includes/tab-settings.php:59
+msgid "Upload custom default avatar?"
+msgstr ""
+
+#: includes/tab-settings.php:78
+msgid "Upload, choose or remove the custom avatar."
+msgstr ""
+
+#: includes/tabs-output.php:85
+msgid "Save Settings"
+msgstr ""
+
+#: libraries/updateclient/UpdateClient.class.php:191
+msgid "Compatible up to:"
+msgstr ""
+
+#: libraries/updateclient/UpdateClient.class.php:192
+msgid "Reviews"
+msgstr ""
+
+#: libraries/updateclient/UpdateClient.class.php:193
+msgid "Read all reviews"
+msgstr ""
+
+#: libraries/updateclient/UpdateClient.class.php:383
+msgid "View details"
+msgstr ""
