@@ -55,20 +55,27 @@ if ( ! function_exists( 'azrcrv_display_azurecurve_menu' ) ) {
 			$tab_active_label = esc_html__( 'Active Plugins', 'azrcrv-a' );
 			$active_plugins   = '';
 
-		foreach ( $plugin_array as $plugin_name => $plugin_details ) {
-			if ( $plugin_details['retired'] == 0 ) {
+			foreach ( $plugin_array as $plugin_name => $plugin_details ) {
+				
 				$alternative_color = '';
-				if ( isset( $plugin_details['bright'] ) and $plugin_details['bright'] == 1 ) {
-					$alternative_color = 'bright-';
-				}
+				
 				if ( isset( $plugin_details['premium'] ) and $plugin_details['premium'] == 1 ) {
 					$alternative_color = 'premium-';
 				}
+				
+				if ( isset( $plugin_details['bright'] ) and $plugin_details['bright'] == 1 ) {
+					$alternative_color = 'bright-';
+				}
+				
+				if ( isset( $plugin_details['retired'] ) and $plugin_details['retired'] == 1 ) {
+					$alternative_color = 'grey-';
+				}
+				
 				if ( is_plugin_active( $plugin_details['plugin_link'] ) ) {
 					$active_plugins .= '<a href="' . esc_url_raw( $plugin_details['admin_URL'] ) . '" class="azrcrv-' . esc_html( $alternative_color ) . 'plugin-index">' . esc_html( $plugin_name ) . '</a>';
 				}
+					
 			}
-		}
 
 			$tab_active = '
 				<table class="form-table azrcrv-settings">
@@ -105,29 +112,30 @@ if ( ! function_exists( 'azrcrv_display_azurecurve_menu' ) ) {
 
 			$countofplugins = 0;
 
-		foreach ( $plugin_array as $plugin_name => $plugin_details ) {
+			foreach ( $plugin_array as $plugin_name => $plugin_details ) {
 
-			if ( $plugin_details['retired'] == 0 ) {
+				if ( $plugin_details['retired'] == 0 ) {
 
-				$alternative_color = '';
-				if ( isset( $plugin_details['bright'] ) and $plugin_details['bright'] == 1 ) {
-					$alternative_color = 'bright-';
-				}
+					$alternative_color = '';
 
-				if ( isset( $plugin_details['premium'] ) and $plugin_details['premium'] == 1 ) {
-					$alternative_color = 'premium-';
-				}
+					if ( isset( $plugin_details['premium'] ) and $plugin_details['premium'] == 1 ) {
+						$alternative_color = 'premium-';
+					}
+					
+					if ( isset( $plugin_details['bright'] ) and $plugin_details['bright'] == 1 ) {
+						$alternative_color = 'bright-';
+					}
 
-				if ( ! is_plugin_active( $plugin_details['plugin_link'] ) ) {
-					$other_plugins  .= '<a href="' . esc_url_raw( $plugin_details['dev_URL'] ) . '" class="azrcrv-' . esc_html( $alternative_color ) . 'plugin-index">' . esc_html( $plugin_name ) . '</a>';
-					$countofplugins += 1;
+					if ( ! is_plugin_active( $plugin_details['plugin_link'] ) ) {
+						$other_plugins  .= '<a href="' . esc_url_raw( $plugin_details['dev_URL'] ) . '" class="azrcrv-' . esc_html( $alternative_color ) . 'plugin-index">' . esc_html( $plugin_name ) . '</a>';
+						$countofplugins += 1;
+					}
 				}
 			}
-		}
 
-		if ( $countofplugins == 0 ) {
-			$other_plugins .= sprintf( esc_html__( 'Congratulations! You\'re using all of the %s plugins.', 'azrcrv-a' ), 'azurecurve | Development' );
-		}
+			if ( $countofplugins == 0 ) {
+				$other_plugins .= sprintf( esc_html__( 'Congratulations! You\'re using all of the %s plugins.', 'azrcrv-a' ), 'azurecurve | Development' );
+			}
 
 			$tab_other = '
 				<table class="form-table azrcrv-settings">
@@ -157,7 +165,7 @@ if ( ! function_exists( 'azrcrv_display_azurecurve_menu' ) ) {
 					
 				</table>';
 
-			require_once 'azurecurve-menu-tabs-output.php';
+		require_once 'azurecurve-menu-tabs-output.php';
 
 		echo '</div>';
 
