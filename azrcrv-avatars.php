@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Avatars
  * Description: Allow users to upload their own avatar.
- * Version: 2.2.0
+ * Version: 2.2.1
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/avatars/
@@ -25,8 +25,14 @@ namespace azurecurve\Avatars;
 /**
  * Define constants.
  */
+const DEVELOPER_SHORTNAME = 'azurecurve';
+const DEVELOPER_NAME      = DEVELOPER_SHORTNAME . ' | Development';
+const DEVELOPER_URL_RAW  = 'https://development.azurecurve.co.uk/classicpress-plugins/';
+const DEVELOPER_URL      = '<a href="' . DEVELOPER_URL_RAW . '">' . DEVELOPER_NAME . '</a>';
+
 const PLUGIN_NAME       = 'Avatars';
-const PLUGIN_SLUG       = 'azrcrv-avatars';
+const PLUGIN_SHORT_SLUG = 'avatars';
+const PLUGIN_SLUG       = 'azrcrv-' . PLUGIN_SHORT_SLUG;
 const PLUGIN_HYPHEN     = 'azrcrv-a';
 const PLUGIN_UNDERSCORE = 'azrcrv_a';
 
