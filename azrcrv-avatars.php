@@ -1,14 +1,18 @@
 <?php
 /**
  * ------------------------------------------------------------------------------
- * Plugin Name: Avatars
- * Description: Allow users to upload their own avatar.
- * Version: 2.2.3
- * Author: azurecurve
- * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
- * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/avatars/
- * Text Domain: azrcrv-a
- * Domain Path: /languages
+ * Plugin Name:		Avatars
+ * Description:		Allow users to upload their own avatar.
+ * Version:			2.2.4
+ * Requires CP:		1.0
+ * Author:			azurecurve
+ * Author URI:		https://development.azurecurve.co.uk/classicpress-plugins/
+ * Plugin URI:		https://development.azurecurve.co.uk/classicpress-plugins/avatars/
+ * Donate link:		https://development.azurecurve.co.uk/support-development/
+ * Text Domain:		azrcrv-a
+ * Domain Path:		/assets/languages
+ * License:			GPLv2 or later
+ * License URI:		http://www.gnu.org/licenses/gpl-2.0.html
  * ------------------------------------------------------------------------------
  * This is free software released under the terms of the General Public License,
  * version 2, or later. It is distributed WITHOUT ANY WARRANTY; without even the
