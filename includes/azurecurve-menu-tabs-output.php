@@ -2,6 +2,14 @@
 /*
 	tab output on azurecurve page
 */
+
+/**
+ * Prevent direct access.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	die();
+}
+
 ?>
 
 <div id="tabs" class="azrcrv-ui-tabs">

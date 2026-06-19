@@ -11,6 +11,13 @@
 namespace azurecurve\Avatars;
 
 /**
+ * Prevent direct access.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	die();
+}
+
+/**
  * Setup registration activation hook, actions, filters and shortcodes.
  *
  * @since 1.0.0
@@ -42,7 +49,7 @@ add_filter( 'codepotent_update_manager_' . $plugin_slug_for_um . '_image_url', _
 
 	// add additional filters.
 	add_filter( 'avatar_defaults', __NAMESPACE__ . '\\set_default_avatar' );
-	add_filter( 'get_avatar', __NAMESPACE__ . '\\return_avatar', 10, 5 );
+	add_filter( 'get_avatar', __NAMESPACE__ . '\\return_avatar', 10, 6 );
 	add_filter( 'avatar_defaults', __NAMESPACE__ . '\\avatar_defaults' );
 
 // add shortcodes.

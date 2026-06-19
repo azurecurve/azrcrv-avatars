@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name:		Avatars
  * Description:		Allow users to upload their own avatar.
- * Version:			2.2.5
+ * Version:			3.0.0
  * Requires CP:		1.0
  * Requires PHP:	7.4
  * Author:			azurecurve

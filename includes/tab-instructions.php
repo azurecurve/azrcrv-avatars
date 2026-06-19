@@ -9,6 +9,13 @@
 namespace azurecurve\Avatars;
 
 /**
+ * Prevent direct access.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	die();
+}
+
+/**
  * Instructions tab.
  */
 $tab_instructions_label = esc_html__( 'Instructions', 'azrcrv-a' );

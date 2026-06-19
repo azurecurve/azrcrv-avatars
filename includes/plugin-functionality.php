@@ -11,6 +11,13 @@
 namespace azurecurve\Avatars;
 
 /**
+ * Prevent direct access.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	die();
+}
+
+/**
  * Media uploader.
  *
  * @since 1.0.0
@@ -38,13 +45,11 @@ function set_default_avatar( $default_avatar ) {
 	$options = get_option_with_defaults( PLUGIN_HYPHEN );
 
 	// azurecurve avatar.
-	$avatar                    = esc_url_raw( plugins_url( '../images/customavatar.png', __FILE__ ) );
-	$default_avatar[ $avatar ] = 'Custom Avatar';
+	$default_avatar['azrcrv_a_default'] = 'Custom Avatar';
 
 	// your custom avatar.
 	if ( strlen( $options['custom-default-avatar'] ) > 0 ) {
-		$avatar                    = esc_url_raw( $options['custom-default-avatar'] );
-		$default_avatar[ $avatar ] = 'Your Custom Avatar';
+		$default_avatar['azrcrv_a_custom'] = 'Your Custom Avatar';
 	}
 
 	return $default_avatar;
@@ -67,8 +72,26 @@ function display_avatar( $atts, $content = null ) {
  *
  * @since 1.0.0
  */
-function return_avatar( $avatar, $id_or_email, $size, $default, $alt ) {
+function return_avatar( $avatar, $id_or_email, $size, $default, $alt, $args = array() ) {
 	$user = false;
+
+	// The Discussion Settings preview rows are the only callers that pass force_default;
+	// only handle our own preview entries there and leave everything else to WordPress.
+	if ( ! empty( $args['force_default'] ) ) {
+		$options = get_option_with_defaults( PLUGIN_HYPHEN );
+
+		if ( $default === 'azrcrv_a_default' ) {
+			$src = esc_url_raw( plugins_url( '../images/customavatar.png', __FILE__ ) );
+			return "<img alt='" . esc_attr( $alt ) . "' src='{$src}' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
+		} elseif ( $default === 'azrcrv_a_custom' ) {
+			$src = strlen( $options['custom-default-avatar'] ) > 0
+				? esc_url_raw( $options['custom-default-avatar'] )
+				: esc_url_raw( plugins_url( '../images/customavatar.png', __FILE__ ) );
+			return "<img alt='" . esc_attr( $alt ) . "' src='{$src}' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
+		}
+
+		return $avatar;
+	}
 
 	// get user id from $id_or_email.
 	if ( is_numeric( $id_or_email ) ) {
@@ -87,18 +110,22 @@ function return_avatar( $avatar, $id_or_email, $size, $default, $alt ) {
 
 	// get avatar options.
 	$options = get_option_with_defaults( PLUGIN_HYPHEN );
+
 	// check if registered user.
 	if ( empty( $user ) ) {
-		// if not registered do they have an email.
-		if ( strlen( $id_or_email->comment_author_email ) > 0 ) {
-			// if there is an email do they have a gravatar.
-			if ( strlen( check_user_has_gravatar( $id_or_email->comment_author_email ) ) > 0 and $options['localonly'] == 0 ) {
-				return $avatar;
-			}
+		// unregistered user — if not localonly, let WP/Gravatar handle it.
+		if ( $options['localonly'] == 0 ) {
+			return $avatar;
 		}
 		$user_id = 0;
 	} else {
 		$user_id = $user->ID;
+	}
+
+	// only override when the user has a local avatar set, or localonly is enabled.
+	$local_avatar = get_user_meta( $user_id, PLUGIN_UNDERSCORE . '_avatar', true );
+	if ( strlen( $local_avatar ) == 0 && $options['localonly'] == 0 ) {
+		return $avatar;
 	}
 
 	// get avatar url.
@@ -144,8 +171,12 @@ function get_avatar_url( $userid ) {
 			$default = includes_url( 'images/blank.gif' );
 		} elseif ( $default == 'gravatar_default' ) {
 			$default = "$host/avatar/?s";
-		} elseif ( substr( $default, 0, 4 ) == 'http' ) {
-			$default = $avatar_default;
+		} elseif ( $default == 'azrcrv_a_custom' ) {
+			$default = strlen( $options['custom-default-avatar'] ) > 0
+				? esc_url_raw( $options['custom-default-avatar'] )
+				: esc_url_raw( plugins_url( '../images/customavatar.png', __FILE__ ) );
+		} elseif ( $default == 'azrcrv_a_default' ) {
+			$default = esc_url_raw( plugins_url( '../images/customavatar.png', __FILE__ ) );
 		} else {
 			$default = "$host/avatar/?d=$default&amp;";
 		}
@@ -168,7 +199,6 @@ function get_avatar_url( $userid ) {
  * @since 1.0.0
  */
 function avatar_defaults( $avatar_defaults ) {
-	remove_action( 'get_avatar', __NAMESPACE__ . '\\return_avatar' );
 	return $avatar_defaults;
 }
 

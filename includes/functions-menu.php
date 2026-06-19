@@ -11,6 +11,13 @@
 namespace azurecurve\Avatars;
 
 /**
+ * Prevent direct access.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	die();
+}
+
+/**
  * Add action link on plugins page.
  *
  * @since 1.0.0

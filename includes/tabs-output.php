@@ -9,6 +9,13 @@
 namespace azurecurve\Avatars;
 
 /**
+ * Prevent direct access.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	die();
+}
+
+/**
  * Output tabs.
  */
 ?>
